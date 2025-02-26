@@ -19,6 +19,45 @@
     <%#= javascript_importmap_tags %>
   </head>
   <body class="bg-[#FBF9F7] min-h-dvh flex flex-col items-center py-[20px] [font-family:DM_Sans,serif]">
+    <nav
+  class="bg-[#FEFEFE] flex items-center p-[6px] border-[#EFEDEB] border-[1px] mx-auto max-w-[640px] w-full rounded-[10px] min-h-[52px]">
+      <img class="rounded-[10px]" height="32" width="32" src="<%= asset_path('image-avatar.jpg') %>" alt="Avatar of person">
+      <ul class="flex items-center gap-[24px] ml-auto">
+        <% [
+      { title: 'Home', url: '/' },
+      { title: 'Blog', url: '/blog' },
+      { title: 'About', url: '/about' },
+      { title: 'Newsletter', url: '/newsletter' }
+    ].each do |nav_item| %>
+          <li><a class="text-[#34302D] nav-item" href="<%= nav_item[:url] %>"><%= nav_item[:title] %></a></li>
+        <% end %>
+      </ul>
+      <button class="ml-[20px] flex items-center justify-center cursor-pointer rounded-[8px] border-[#EFEDEB] border-[1px] w-[40px] h-[40px] bg-[#FBF9F7]">
+        <img role="decoration" src="<%= asset_path('icon-moon.svg') %>" alt="">
+      </button>
+    </nav>
     <%= yield %>
+    <footer class="flex max-w-[calc(640px-18px)] mt-auto [width:calc(100%-18px)] flex-col h-full [border-inline:1px_solid_#EFEDEB] ">
+      <div class="[border-top:1px_solid_#EFEDEB] justify-between flex items-center pt-[16px] pb-[32px] mx-[10px]">
+        <span class="text-[#4A4846] text-[16px] leading-[130%] tracking-[-0.2px] flex items-center gap-[6px]">Made with <img height="16" width="16" src="<%= asset_path('header-ruby-logo.png') %>" alt="ruby">
+          and <img height="16" width="16" src="<%= asset_path('rails.png') %>" alt="rails">
+        </span>
+        <ul class="flex gap-[16px]">
+          <% [
+      { src: 'logo-x.svg', aria: 'X logo' },
+      { src: 'logo-github.svg', aria: 'GitHub logo' },
+      { src: 'logo-linkedin.svg', aria: 'LinkedIn logo' },
+      { src: 'logo-frontend-mentor.svg', aria: 'Frontend Mentor logo' }
+      ].each do |icon| %>
+            <li>
+              <a href="#" class="hover:opacity-70 [transition:opacity_300ms]">
+                <img role="decoration" src="<%= asset_path(icon[:src]) %>" alt="<%= icon[:aria] %>" />
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </footer>
+    <%= yield :scripts %>
   </body>
 </html>
