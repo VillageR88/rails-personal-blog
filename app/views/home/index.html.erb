@@ -37,19 +37,28 @@
     </section>
     <section class="py-[32px] flex flex-col gap-[32px]">
       <h2 class="h1 decor-underline-2 w-full">Latest Articles</h2>
-      <% 
+      <div id="article-container" class="flex flex-col gap-[24px] [transition:height_300ms] h-[450px] overflow-y-clip">
+        <% 
         articles = JSON.parse(File.read(Rails.root.join('db', 'data.json')))
-        articles.each do |article|
+        articles.each_with_index do |article, index| 
       %>
-      <div class="flex flex-col w-fit gap-[8px] ">
-        <a class="[&>h3]:text-[rgb(52,48,45,1)] [&:hover>h3]:text-[rgb(52,48,45,0.7)] [&:hover>h3]:underline [&:hover>h3]:decoration-[rgb(52,48,45,0.5)]" href="<%= article['slug'] %>">
-          <h3 class="color-unset [transition:300ms] decoration-[rgb(52,48,45,0)]"><%= article['title'] %></h3>
-        </a>
-        <p class="p-italic"><%= article['publishedAt'].to_date.strftime('%B %-d, %Y') %></p>
-      </div>
-    <% end %>
-    <button role="button" class="decor-underline-3 w-fit cursor-pointer hover:text-[rgba(52,48,45,0.7)] text-[rgba(52,48,45,1)] text-[18px] font-[500] [transition:color_300ms] leading-[150%] tracking-[-0.5px]">View all articles</button>
-  </section>
+        <section class="flex flex-col w-fit gap-[8px] article-item <%= index >= 5 ? 'hidden' : '' %>">
+          <a class="[&>h3]:text-[rgb(52,48,45,1)] [&:hover>h3]:text-[rgb(52,48,45,0.7)] [&:hover>h3]:underline [&:hover>h3]:decoration-[rgb(52,48,45,0.5)]" href="<%= article['slug'] %>">
+            <h3 class="color-unset [transition:300ms] decoration-[rgb(52,48,45,0)]"><%= article['title'] %></h3>
+          </a>
+          <p class="p-italic"><%= article['publishedAt'].to_date.strftime('%B %-d, %Y') %></p>
+        </section>
+      <% end %>
+      <% if articles.length > 5 %>
+        <button 
+          id="view-all-button"
+          onclick="toggleArticles()"
+          class="decor-underline-3 w-fit cursor-pointer hover:text-[rgba(52,48,45,0.7)] text-[rgba(52,48,45,1)] text-[18px] font-[500] [transition:color_300ms] leading-[150%] tracking-[-0.5px]">
+          View all articles
+        </button>
+      <% end %>
+    </section>
+  </div>
 </div>
 </main>
 <footer class="flex max-w-[calc(640px-18px)] mt-auto [width:calc(100%-18px)] flex-col h-full [border-inline:1px_solid_#EFEDEB] ">
@@ -58,3 +67,4 @@
       and <img height="16" width="16" src="<%= asset_path('rails.png') %>" alt="rails"></span>
   </div>
 </footer>
+<%= javascript_include_tag 'articles.js' %>
