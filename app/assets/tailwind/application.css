@@ -1,1 +1,77 @@
 @import "tailwindcss";
+
+h1,
+.h1 {
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 130%;
+  letter-spacing: -0.5px;
+  color: #34302d;
+}
+
+h3:not(.color-unset),
+.h3 {
+  @apply text-[#34302D];
+}
+h3,
+.h3 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 130%;
+  letter-spacing: -0.5px;
+}
+
+.p-normal {
+  color: #4a4846;
+  font-size: 18px;
+  line-height: 140%;
+  letter-spacing: -0.2px;
+}
+
+.p-italic {
+  color: #4a4846;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+.nav-item {
+  position: relative;
+  background-image: linear-gradient(#93cefc, #93cefc);
+  background-position: 50% 95%;
+  background-repeat: no-repeat;
+  background-size: 0% 3px;
+  transition: background-size 300ms ease-in-out;
+}
+.nav-item.bottom {
+  background-image: linear-gradient(white, white);
+}
+
+.nav-item:hover {
+  background-size: 100% 3px;
+  /* Removed the background-position change to keep it centered during animation */
+}
+
+.decor-underline {
+  position: relative;
+  background-image: linear-gradient(#93cefc, #93cefc);
+  background-position: 0% 1em;
+  background-repeat: no-repeat;
+  background-size: 99% 8px;
+  transition: background-size 300ms ease-in-out;
+}
+
+.decor-underline-2 {
+  position: relative;
+  background-image: linear-gradient(#93cefc, #93cefc);
+  background-position: 7em 1em;
+  background-repeat: no-repeat;
+  background-size: 40px 3px;
+}
+.decor-underline-3 {
+  position: relative;
+  background-image: linear-gradient(#93cefc, #93cefc);
+  background-position: 0% 1.3em;
+  background-repeat: no-repeat;
+  background-size: 100% 3px;
+}
