@@ -7,23 +7,17 @@
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <%= yield :head %>
-
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <%= favicon_link_tag 'favicon.ico' %>
-
-
-
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%# Remove or comment out the next line %>
     <%#= javascript_importmap_tags %>
   </head>
-
-  <body class="bg-[#FBF9F7] min-h-full py-[20px]">
+  <body class="bg-[#FBF9F7] min-h-full py-[20px] [font-family:DM_Sans,serif]">
     <%= yield %>
   </body>
 </html>

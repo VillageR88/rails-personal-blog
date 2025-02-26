@@ -8,3 +8,22 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+.nav-item {
+  position: relative;
+  display: inline-block;
+  background-image: linear-gradient(#93cefc, #93cefc);
+  background-position: 50% 89%;
+  background-repeat: no-repeat;
+  background-size: 0% 3px;
+  transition: background-size 300ms ease-in-out;
+}
+
+.nav-item.bottom {
+  background-image: linear-gradient(white, white);
+}
+
+.nav-item:hover {
+  background-size: 100% 3px;
+  /* Removed the background-position change to keep it centered during animation */
+}

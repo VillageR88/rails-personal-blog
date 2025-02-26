@@ -8,5 +8,9 @@
     },
     "vscode-erb-beautify.ignoreFormatFilePatterns": [
         "**/email_templates/**/*.erb"
+    ],
+    "cSpell.words": [
+        "importmap",
+        "stylesheet"
     ]
 }
