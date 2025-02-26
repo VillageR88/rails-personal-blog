@@ -12,10 +12,10 @@
     <% end %>
   </ul>
   <button class="ml-[20px] flex items-center justify-center cursor-pointer rounded-[8px] border-[#EFEDEB] border-[1px] w-[40px] h-[40px] bg-[#FBF9F7]">
-    <img  role="decoration" src="<%= asset_path('icon-moon.svg') %>" alt="">
+    <img role="decoration" src="<%= asset_path('icon-moon.svg') %>" alt="">
   </button>
 </nav>
-<main class="flex max-w-[calc(640px-18px)] [width:calc(100%-18px)] flex-col h-full min-h-[200px] [border-inline:1px_solid_#EFEDEB]">
+<main class="flex max-w-[calc(640px-18px)] [width:calc(100%-18px)] flex-col h-full min-h-[200px] [border-inline:1px_solid_#EFEDEB] flex-1">
   <div class="divide-y-[1px] divide-[#EFEDEB] flex flex-col divide-solid px-[10px]">
     <section class="py-[32px] flex flex-col gap-[24px]">
       <h1 class="decor-underline w-fit">Hi, I’m Paulina 👋</h1>
@@ -41,7 +41,7 @@
         articles = JSON.parse(File.read(Rails.root.join('db', 'data.json')))
         articles.each do |article|
       %>
-      <a class="flex flex-col gap-[8px] [&>h3]:text-[rgb(52,48,45,1)] [&:hover>h3]:text-[rgb(52,48,45,0.7)] [&:hover>h3]:underline [&:hover>h3]:decoration-[rgb(52,48,45,0.5)] " href="<%= article['slug'] %>">
+      <a class="flex flex-col w-fit gap-[8px] [&>h3]:text-[rgb(52,48,45,1)] [&:hover>h3]:text-[rgb(52,48,45,0.7)] [&:hover>h3]:underline [&:hover>h3]:decoration-[rgb(52,48,45,0.5)] " href="<%= article['slug'] %>">
         <h3 class="color-unset [transition:300ms] decoration-[rgb(52,48,45,0)]"><%= article['title'] %></h3>
         <p class="p-italic"><%= article['publishedAt'].to_date.strftime('%B %-d, %Y') %></p>
       </a>
@@ -50,8 +50,9 @@
   </section>
 </div>
 </main>
-<footer class="flex max-w-[calc(640px-18px)] mt-auto [width:calc(100%-18px)] flex-col  h-full min-h-[200px] [border-inline:1px_solid_#EFEDEB] ">
-  <div class="[border-top:1px_solid_#EFEDEB] flex flex-col mx-[10px]">
-    FOOTER
+<footer class="flex max-w-[calc(640px-18px)] mt-auto [width:calc(100%-18px)] flex-col h-full [border-inline:1px_solid_#EFEDEB] ">
+  <div class="[border-top:1px_solid_#EFEDEB] flex flex-col pt-[16px] pb-[32px] mx-[10px]">
+    <span class="text-[#4A4846] text-[16px] leading-[130%] tracking-[-0.2px] flex items-center gap-[8px]">Made with <img height="16" width="16" src="<%= asset_path('header-ruby-logo.png') %>" alt="ruby">
+      and <img height="16" width="16" src="<%= asset_path('rails.png') %>" alt="rails"></span>
   </div>
 </footer>
