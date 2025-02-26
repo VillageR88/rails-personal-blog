@@ -11,5 +11,32 @@
       <li><a class="text-[#34302D] nav-item" href="<%= nav_item[:url] %>"><%= nav_item[:title] %></a></li>
     <% end %>
   </ul>
-  <button class="ml-[20px] cursor-pointer rounded-[8px] border-[#EFEDEB] border-[1px] w-[40px] h-[40px] bg-[#FBF9F7]"></button>
+  <button class="ml-[20px] flex items-center justify-center cursor-pointer rounded-[8px] border-[#EFEDEB] border-[1px] w-[40px] h-[40px] bg-[#FBF9F7]">
+    <img  role="decoration" src="<%= asset_path('icon-moon.svg') %>" alt="">
+  </button>
 </nav>
+<main class="flex max-w-[calc(640px-18px)] [width:calc(100%-18px)] flex-col  h-full min-h-[200px] [border-inline:1px_solid_#EFEDEB]">
+  <div class="divide-y-[1px] divide-[#EFEDEB] flex flex-col divide-solid px-[10px]">
+    <section class="py-[32px] flex flex-col gap-[24px]">
+      <h1 class="decor-underline w-fit">Hi, I’m Paulina 👋</h1>
+      <p class="whitespace-pre-wrap"><%= "I’m on a journey to become a front-end web developer. I love building little projects, trying out new coding techniques, and sharing what I learn along the way. When I’m not at my desk, you’ll find me reading, hiking through the mountains, or challenging myself on rock-climbing walls.\n\nI started this blog to document my progress, keep myself accountable, and hopefully inspire anyone else who’s learning to code. Welcome to my corner of the internet, and thanks for stopping by!" %></p>
+      <ul class="flex gap-[12px]">
+        <% [
+          { src: 'logo-x.svg' },
+          { src: 'logo-github.svg' },
+          { src: 'logo-linkedin.svg' },
+          { src: 'logo-frontend-mentor.svg' }
+        ].each do |icon| %>
+          <li>
+            <a href="#" class="hover:bg-[#EFEDEB] [transition:background-color_300ms,border_300ms] hover:border-[#DEDCDA] w-[40px] h-[40px] rounded-[10px] border-[1px] border-[#EFEDEB] bg-[#FEFEFE] flex items-center justify-center cursor-pointer">
+              <img role="decoration" src="<%= asset_path(icon[:src]) %>" alt="" />
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+    <section class="py-[32px]">
+      <h2 class="h1 decor-underline-2 w-full">Latest Articles</h2>
+    </section>
+  </div>
+</main>
