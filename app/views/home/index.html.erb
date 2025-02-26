@@ -62,9 +62,24 @@
 </div>
 </main>
 <footer class="flex max-w-[calc(640px-18px)] mt-auto [width:calc(100%-18px)] flex-col h-full [border-inline:1px_solid_#EFEDEB] ">
-  <div class="[border-top:1px_solid_#EFEDEB] flex flex-col pt-[16px] pb-[32px] mx-[10px]">
+  <div class="[border-top:1px_solid_#EFEDEB] justify-between flex items-center pt-[16px] pb-[32px] mx-[10px]">
     <span class="text-[#4A4846] text-[16px] leading-[130%] tracking-[-0.2px] flex items-center gap-[6px]">Made with <img height="16" width="16" src="<%= asset_path('header-ruby-logo.png') %>" alt="ruby">
-      and <img height="16" width="16" src="<%= asset_path('rails.png') %>" alt="rails"></span>
+      and <img height="16" width="16" src="<%= asset_path('rails.png') %>" alt="rails">
+    </span>
+    <ul class="flex gap-[16px]">
+      <% [
+      { src: 'logo-x.svg', aria: 'X logo' },
+      { src: 'logo-github.svg', aria: 'GitHub logo' },
+      { src: 'logo-linkedin.svg', aria: 'LinkedIn logo' },
+      { src: 'logo-frontend-mentor.svg', aria: 'Frontend Mentor logo' }
+      ].each do |icon| %>
+        <li>
+          <a href="#" class="hover:opacity-70 [transition:opacity_300ms]">
+            <img role="decoration" src="<%= asset_path(icon[:src]) %>" alt="<%= icon[:aria] %>" />
+          </a>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </footer>
 <%= javascript_include_tag 'articles.js' %>
