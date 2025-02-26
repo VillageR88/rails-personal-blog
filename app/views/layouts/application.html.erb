@@ -23,14 +23,18 @@
   class="bg-[#FEFEFE] flex items-center p-[6px] border-[#EFEDEB] border-[1px] mx-auto max-w-[640px] w-full rounded-[10px] min-h-[52px]">
       <img class="rounded-[10px]" height="32" width="32" src="<%= asset_path('image-avatar.jpg') %>" alt="Avatar of person">
       <ul class="flex items-center gap-[24px] ml-auto">
-        <% [
-      { title: 'Home', url: '/' },
-      { title: 'Blog', url: '/blog' },
-      { title: 'About', url: '/about' },
-      { title: 'Newsletter', url: '/newsletter' }
-    ].each do |nav_item| %>
-          <li><a class="text-[#34302D] nav-item" href="<%= nav_item[:url] %>"><%= nav_item[:title] %></a></li>
-        <% end %>
+        <nav class="flex items-center h-full gap-[32px]">
+          <% [
+            { title: 'Home', url: root_path, controller: 'home' },
+            { title: 'Blog', url: blog_path, controller: 'blog' },
+            { title: 'About', url: '/about', controller: 'about' },
+            { title: 'Newsletter', url: '/newsletter', controller: 'newsletter' }
+          ].each do |nav_item| %>
+            <%= link_to nav_item[:title], 
+                nav_item[:url], 
+                class: "nav-item #{current_page == nav_item[:controller] ? 'active' : ''}" %>
+          <% end %>
+        </nav>
       </ul>
       <button class="ml-[20px] flex items-center justify-center cursor-pointer rounded-[8px] border-[#EFEDEB] border-[1px] w-[40px] h-[40px] bg-[#FBF9F7]">
         <img role="decoration" src="<%= asset_path('icon-moon.svg') %>" alt="">

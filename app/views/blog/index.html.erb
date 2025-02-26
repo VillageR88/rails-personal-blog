@@ -11,6 +11,7 @@
             <h3 class="color-unset [transition:300ms] decoration-[rgb(52,48,45,0)]"><%= article['title'] %></h3>
           </a>
           <p class="p-italic"><%= article['publishedAt'].to_date.strftime('%B %-d, %Y') %></p>
+          <p class="p-normal"><%= article['description'] %></p>
         </section>
       <% end %>
     </div>
