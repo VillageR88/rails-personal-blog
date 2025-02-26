@@ -1,0 +1,15 @@
+<nav
+  class="bg-[#FEFEFE] flex items-center p-[6px] border-[#EFEDEB] border-[1px] mx-auto max-w-[640px] w-full rounded-[10px] min-h-[52px]">
+  <img class="rounded-[10px]" height="32" width="32" src="<%= asset_path('image-avatar.jpg') %>" alt="Avatar of person">
+  <ul class="flex items-center gap-[24px] ml-auto">
+    <% [
+      { title: 'Home', url: '/' },
+      { title: 'Blog', url: '/blog' },
+      { title: 'About', url: '/about' },
+      { title: 'Newsletter', url: '/newsletter' }
+    ].each do |nav_item| %>
+      <li><a href="<%= nav_item[:url] %>"><%= nav_item[:title] %></a></li>
+    <% end %>
+  </ul>
+  <button class="ml-[20px] cursor-pointer rounded-[8px] border-[#EFEDEB] border-[1px] w-[40px] h-[40px] bg-[#FBF9F7]"></button>
+</nav>
