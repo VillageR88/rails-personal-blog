@@ -6,7 +6,9 @@
 @view-transition {
   navigation: auto;
 }
-
+:root.dark {
+  color-scheme: dark;
+}
 h1,
 .h1 {
   @apply dark:text-[#FEFEFE] text-[#34302d];
@@ -42,12 +44,12 @@ h3,
   letter-spacing: -0.2px;
 }
 .nav-item {
+  @apply [transition:background-size_300ms,color_300ms];
   position: relative;
   background-image: linear-gradient(#93cefc, #93cefc);
   background-position: 50% 95%;
   background-repeat: no-repeat;
   background-size: 0% 3px;
-  @apply [transition:background-size_300ms,color_300ms];
 }
 
 .nav-item.active {

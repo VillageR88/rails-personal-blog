@@ -1,20 +1,22 @@
 <div class="flex flex-col px-[10px]">
   <section class="pt-[48px] pb-[24px] flex flex-col gap-[24px]">
-    <h1 class="w-fit">Newsletter</h1>
+    <h1 class="w-fit [transition:color_300ms]">Newsletter</h1>
     <div class="flex flex-col gap-[16px]">
-      <p class="p-normal">
+      <p class="p-normal [transition:color_300ms]">
         Want to stay updated on my latest articles, coding tutorials, and personal adventures? Sign up for my newsletter! It's a simple way to keep track of new posts and occasional coding tips I discover. Just drop your email in the sign-up box, and I'll send you updates whenever there's something new to share.
       </p>
-      <p class="leading-[130%] tracking-[-0.5px] text-[20px] font-semibold text-[#34302D]">
+      <p class="leading-[130%] tracking-[-0.5px] text-[20px] font-semibold dark:text-[#FEFEFE] text-[#34302D] [transition:color_300ms]">
         I'd love to have you along for the ride and also hear about your own journey!
       </p>
     </div>
     <form class="flex flex-col gap-[16px] w-full">
       <div class="flex flex-col gap-[8px] w-full">
-        <label for="email" class="text-[#34302D] tracking-[-0.2px] leading-[140%] text-[18px]">Email Address</label>
+        <label for="email" class="text-[#34302D] [transition:color_300ms] dark:text-[#FEFEFE] tracking-[-0.2px] leading-[140%] text-[18px]">Email Address</label>
         <input 
           type="email" 
-          id="email" 
+          id="email"
+          autocomplete="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
           placeholder="email@example.com"
           class="outline-none w-full hover:not-focus:bg-[#EFEDEB] [transition:background-color_300ms] rounded-[10px] min-h-[51px] [border:1px_solid_#DEDCDA] px-[16px] bg-[#FEFEFE]"
           required
@@ -26,7 +28,7 @@
       >
         Stay updated
       </button>
-      <p class="text-[16px] text-[#4A4846] leading-[130%] tracking-[-0.2px]">
+      <p class="text-[16px] text-[#4A4846] [transition:color_300ms] dark:text-[#C0BFBF] leading-[130%] tracking-[-0.2px]">
         Unsubscribe anytime. No spam, I promise 🙂
       </p>
     </form>
