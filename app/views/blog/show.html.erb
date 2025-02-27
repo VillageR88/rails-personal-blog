@@ -1,0 +1,38 @@
+<div class="flex flex-col px-[10px]">
+  <article class="pt-[48px] pb-[24px] flex flex-col gap-[16px]">
+    <header class="flex flex-col gap-[8px]">
+      <h1 class="decor-underline-2 bg-[5.5em_1em]"><%= @article['title'] %></h1>
+      <p class="p-italic"><%= @article['publishedAt'].to_date.strftime('%B %-d, %Y') %></p>
+    </header>
+    <div class="article-content flex flex-col gap-[16px]">
+      <% @article['content'].split("\n\n").each do |paragraph| %>
+        <% if paragraph.start_with?('##') %>
+          <h2 class="pt-[16px]"><%= paragraph.gsub(/^## /, '') %></h2>
+        <% elsif paragraph.start_with?('#') %>
+          <h1><%= paragraph.gsub(/^# /, '') %></h1>
+        <% elsif paragraph.start_with?('---') %>
+          <hr class="my-[16px] border-t border-[#EFEDEB]">
+        <% elsif paragraph.start_with?('> ') %>
+          <blockquote class="pl-[16px] border-l-4 border-[#EFEDEB] italic">
+            <%= paragraph.gsub(/^> /, '') %>
+          </blockquote>
+        <% elsif paragraph.start_with?('```') && paragraph.end_with?('```') %>
+          <pre class="bg-[#f5f5f5] p-[16px] rounded overflow-x-auto">
+            <code><%= paragraph.gsub(/^```.*\n/, '').gsub(/```$/, '') %></code>
+          </pre>
+        <% elsif paragraph.start_with?('- ') %>
+          <ul class="list-disc pl-[20px] flex flex-col gap-[8px]">
+            <% paragraph.split("\n").each do |item| %>
+              <li><%= item.gsub(/^- /, '') %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="p-normal"><%= paragraph %></p>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="pt-[32px]">
+      <a href="/blog" class="text-[#34302D] hover:underline">&larr; Back to all articles</a>
+    </div>
+  </article>
+</div>
