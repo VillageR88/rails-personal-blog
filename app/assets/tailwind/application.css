@@ -2,16 +2,23 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* Add this to ignore unknown rule warnings */
-
+@layer base {
+  ::marker {
+    transition: color 40ms;
+  }
+}
 @view-transition {
   navigation: auto;
 }
 :root.dark {
   color-scheme: dark;
 }
+hr {
+  @apply text-[#EFEDEB] dark:text-[#34302D] [transition:color_300ms];
+}
 
 ::placeholder {
-  transition: color 300ms;
+  transition: all 300ms;
 }
 h1,
 .h1 {
