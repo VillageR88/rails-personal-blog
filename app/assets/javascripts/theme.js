@@ -16,6 +16,7 @@ function initTheme() {
     root.classList.remove("dark");
     updateThemeIcon("light", themeIcon);
   }
+  document.body.classList.remove("hidden");
 }
 
 // Toggle between light and dark themes
