@@ -10,7 +10,7 @@ module BlogHelper
     end
 
     def block_code(code, language)
-      "<pre class='bg-[#201E1D] dark:bg-[#f5f5f5] p-[16px] rounded overflow-x-auto'><code class='transition-colors duration-300'>#{code}</code></pre>"
+      "<pre class='bg-[#EFEDEB] border-[#C0BFBF] border-[1px] dark:bg-[#201E1D] p-[16px] rounded overflow-x-auto'><code class='transition-colors duration-300'>#{code}</code></pre>"
     end
 
     def block_quote(quote)

@@ -17,13 +17,14 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%# Remove or comment out the next line %>
     <%#= javascript_importmap_tags %>
+    <%= javascript_include_tag 'mobile' %>
     <%= javascript_include_tag 'theme' %>
   </head>
   <body class="hidden bg-[#FBF9F7] [transition:background-color_300ms] dark:bg-[#1C1A19] min-h-dvh flex-col items-center py-[20px] px-[16px] [font-family:DM_Sans,serif]">
     <nav
   class="bg-[#FEFEFE] dark:bg-[#1F1F1F] flex items-center p-[6px] border-[#EFEDEB] dark:border-[#333333] border-[1px] mx-auto max-w-[640px] [transition:background-color_300ms,border-color_300ms] w-full rounded-[10px] min-h-[52px]">
       <img class="rounded-[10px]" height="32" width="32" src="<%= asset_path('image-avatar.jpg') %>" alt="Avatar of person">
-      <ul class="flex items-center gap-[24px] ml-auto">
+      <ul class="sm:flex hidden items-center gap-[24px] ml-auto">
         <li class="flex items-center h-full gap-[32px]">
           <% [
             { title: 'Home', url: '/', controller: 'home' },
@@ -37,6 +38,14 @@
           <% end %>
         </li>
       </ul>
+      <button onclick="toggleMenu()" type="button" id="mobile-menu-switch" class="ml-auto w-[40px] h-[40px] sm:hidden flex items-center justify-center [transition:background-color_150ms] rounded-[8px]">
+        <svg class="absolute" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
+          <path class="stroke-[#34302D] dark:stroke-[#FEFEFE] [transition:stroke_300ms]" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.5 10h15m-15-5h15m-15 10h15"/>
+        </svg>
+        <svg class="absolute" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
+          <path class="dark:stroke-[#34302D] stroke-[#FEFEFE] [transition:stroke_300ms]"  stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 5 5 15M5 5l10 10"/>
+        </svg>
+      </button>
       <button id="theme-switch" onclick="toggleTheme()" class="ml-[20px] flex items-center justify-center cursor-pointer rounded-[8px] [transition:border-color_300ms,background-color_300ms] border-[#EFEDEB] dark:border-[#34302D] border-[1px] w-[40px] h-[40px] bg-[#FBF9F7] dark:bg-[#1F1F1F]">
         <img role="decoration" src="<%= asset_path('icon-moon.svg') %>" alt="Switch to dark mode">
       </button>

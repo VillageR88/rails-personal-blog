@@ -13,6 +13,19 @@
 :root.dark {
   color-scheme: dark;
 }
+
+button#mobile-menu-switch.open {
+  @apply bg-[#34302D] dark:bg-[#FEFEFE];
+}
+
+button#mobile-menu-switch.open > svg:nth-of-type(1) {
+  @apply hidden;
+}
+
+button#mobile-menu-switch:not(.open) > svg:nth-of-type(2) {
+  @apply hidden;
+}
+
 hr {
   @apply text-[#EFEDEB] dark:text-[#34302D] [transition:color_300ms];
 }
