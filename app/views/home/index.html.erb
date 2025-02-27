@@ -1,4 +1,3 @@
-  
 <div class="divide-y-[1px] divide-[#EFEDEB] flex flex-col divide-solid px-[10px]">
   <section class="py-[48px] flex flex-col gap-[24px]">
     <h1 class="decor-underline w-[241px]">Hi, I'm Paulina <span class="absolute top-[-3px]">👋</span></h1>
@@ -13,7 +12,7 @@
         articles.each_with_index do |article, index| 
       %>
       <section class="flex flex-col w-fit gap-[8px] article-item <%= index >= 5 ? 'hidden' : '' %>">
-        <a class="[&>h3]:text-[rgb(52,48,45,1)] [&:hover>h3]:text-[rgb(52,48,45,0.7)] [&:hover>h3]:underline [&:hover>h3]:decoration-[rgb(52,48,45,0.5)]" href="<%= article['slug'] %>">
+        <a class="[&>h3]:text-[rgb(52,48,45,1)] [&:hover>h3]:text-[rgb(52,48,45,0.7)] [&:hover>h3]:underline [&:hover>h3]:decoration-[rgb(52,48,45,0.5)]" href="/blog/<%= article['slug'] %>">
           <h3 class="color-unset [transition:300ms] decoration-[rgb(52,48,45,0)]"><%= article['title'] %></h3>
         </a>
         <p class="p-italic"><%= article['publishedAt'].to_date.strftime('%B %-d, %Y') %></p>
