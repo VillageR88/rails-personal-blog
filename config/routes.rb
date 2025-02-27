@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   
   get '/blog', to: 'blog#index'
   get '/about', to: 'about#index'
+  get '/newsletter', to: 'newsletter#index'
 end
