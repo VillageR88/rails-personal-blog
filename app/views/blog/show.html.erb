@@ -6,35 +6,7 @@
       <p class="p-italic [transition:color_300ms]"><%= @article['publishedAt'].to_date.strftime('%B %-d, %Y') %></p>
     </header>
     <div class="article-content flex flex-col gap-[16px]">
-      <% @article['content'].split("\n\n").each do |paragraph| %>
-        <% if paragraph.start_with?('##') %>
-          <h2 class="pt-[16px] [transition:color_300ms]"><%= paragraph.gsub(/^## /, '') %></h2>
-        <% elsif paragraph.start_with?('#') %>
-          <h1 class="[transition:color_300ms]"><%= paragraph.gsub(/^# /, '') %></h1>
-        <% elsif paragraph.start_with?('---') %>
-          <hr class="my-[16px] border-t border-[#EFEDEB] dark:border-[#34302D] [transition:border-color_300ms]">
-        <% elsif paragraph.start_with?('> ') %>
-          <blockquote class="pl-[16px] border-l-4 border-[#C0BFBF] dark:border-[#34302D] italic [transition:color_300ms,border-color_300ms]">
-            <%= paragraph.gsub(/^> /, '') %>
-          </blockquote>
-        <% elsif paragraph.start_with?('```') && paragraph.end_with?('```') %>
-          <pre class="bg-[#f5f5f5] p-[16px] rounded overflow-x-auto">
-            <code class="[transition:color_300ms]"><%= paragraph.gsub(/^```.*\n/, '').gsub(/```$/, '') %></code>
-          </pre>
-        <% elsif paragraph.start_with?('- ') %>
-          <ul class="list-disc pl-[20px] flex flex-col gap-[8px]">
-            <% paragraph.split("\n").each do |item| %>
-              <li class="[transition:color_300ms]"><%= item.gsub(/^- /, '') %></li>
-            <% end %>
-          </ul>
-        <% elsif paragraph.include?('**') && paragraph.count('*') >= 4 %>
-          <p class="p-normal [transition:color_300ms]">
-            <%= paragraph.gsub(/\*\*(.*?)\*\*/) { "<strong>#{$1}</strong>" }.html_safe %>
-          </p>
-        <% else %>
-          <p class="p-normal [transition:color_300ms]"><%= paragraph %></p>
-        <% end %>
-      <% end %>
+      <%= markdown(@article['content']) %>
     </div>
     <a href="/blog" class="decor-underline-3 my-[24px] w-fit cursor-pointer hover:text-[rgba(52,48,45,0.7)] dark:text-[#FEFEFE] hover:dark:text-[rgba(254,254,254,0.7)] text-[rgba(52,48,45,1)] text-[18px] font-[500] [transition:color_300ms] leading-[150%] tracking-[-0.5px]">&larr; Back to all articles</a>
   </article>

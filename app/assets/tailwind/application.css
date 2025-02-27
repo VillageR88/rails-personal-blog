@@ -2,7 +2,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* Add this to ignore unknown rule warnings */
-
+@layer base {
+  ::marker {
+    transition: color 100ms;
+  }
+}
 @view-transition {
   navigation: auto;
 }
