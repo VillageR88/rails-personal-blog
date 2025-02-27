@@ -28,10 +28,7 @@ h3,
 }
 
 .p-normal {
-  color: #4a4846;
-  font-size: 18px;
-  line-height: 140%;
-  letter-spacing: -0.2px;
+  @apply text-[18px] text-[#4a4846] leading-[140%] tracking-[-0.2px];
 }
 
 .p-italic {

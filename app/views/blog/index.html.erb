@@ -1,19 +1,17 @@
-<main class="flex max-w-[calc(640px-18px)] [width:calc(100%-18px)] flex-col h-full min-h-[200px] [border-inline:1px_solid_#EFEDEB] flex-1">
-  <div class="flex flex-col px-[10px] divide-y-[1px] divide-[#EFEDEB] divide-solid">
-    <section class="pt-[48px] pb-[24px] flex flex-col gap-[6px]">
-      <h1 class="decor-underline-2 bg-[5.5em_1em]">My Articles</h1>
-      <p class="p-normal">Below are all my recent blog posts. Click on any title to read the full article.</p>
-    </section>
-    <div class="flex flex-col  divide-y-[1px] divide-[#EFEDEB] divide-solid">
-      <% @articles.each do |article| %>
-        <section class="flex flex-col w-fit gap-[8px] py-[20px]">
-          <a class="[&>h3]:text-[rgb(52,48,45,1)] [&:hover>h3]:text-[rgb(52,48,45,0.7)] [&:hover>h3]:underline [&:hover>h3]:decoration-[rgb(52,48,45,0.5)]" href="<%= article['slug'] %>">
-            <h3 class="color-unset [transition:300ms] decoration-[rgb(52,48,45,0)]"><%= article['title'] %></h3>
-          </a>
-          <p class="p-italic"><%= article['publishedAt'].to_date.strftime('%B %-d, %Y') %></p>
-          <p class="p-normal"><%= article['description'] %></p>
-        </section>
-      <% end %>
-    </div>
+<div class="flex flex-col px-[10px] divide-y-[1px] divide-[#EFEDEB] divide-solid">
+  <section class="pt-[48px] pb-[24px] flex flex-col gap-[6px]">
+    <h1 class="decor-underline-2 bg-[5.5em_1em]">My Articles</h1>
+    <p class="p-normal">Below are all my recent blog posts. Click on any title to read the full article.</p>
+  </section>
+  <div class="flex flex-col  divide-y-[1px] divide-[#EFEDEB] divide-solid">
+    <% @articles.each do |article| %>
+      <section class="flex flex-col w-fit gap-[8px] py-[20px]">
+        <a class="[&>h3]:text-[rgb(52,48,45,1)] [&:hover>h3]:text-[rgb(52,48,45,0.7)] [&:hover>h3]:underline [&:hover>h3]:decoration-[rgb(52,48,45,0.5)]" href="<%= article['slug'] %>">
+          <h3 class="color-unset [transition:300ms] decoration-[rgb(52,48,45,0)]"><%= article['title'] %></h3>
+        </a>
+        <p class="p-italic"><%= article['publishedAt'].to_date.strftime('%B %-d, %Y') %></p>
+        <p class="p-normal"><%= article['description'] %></p>
+      </section>
+    <% end %>
   </div>
-</main>
+</div>

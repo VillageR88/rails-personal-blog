@@ -1,11 +1,9 @@
-<main class="flex max-w-[calc(640px-18px)] [width:calc(100%-18px)] flex-col h-full min-h-[200px] [border-inline:1px_solid_#EFEDEB] flex-1">
-  <div class="divide-y-[1px] divide-[#EFEDEB] flex flex-col divide-solid px-[10px]">
-    <section class="py-[48px] flex flex-col gap-[24px]">
-      <h1 class="decor-underline">About Me</h1>
-      <p class="whitespace-pre-wrap p-normal">
-        <%# Add your about page content here %>
-      </p>
-      <%= render 'shared/social_links', show_heading: true %>
-    </section>
-  </div>
-</main>
+<div class="flex flex-col px-[10px] divide-y-[1px] divide-[#EFEDEB] divide-solid">
+  <section class="py-[48px] flex flex-col gap-[24px]">
+    <h1 class="decor-underline">About Me</h1>
+    <p class="whitespace-pre-wrap p-normal">
+      <%# Add your about page content here %>
+    </p>
+    <%= render 'shared/social_links', show_heading: true %>
+  </section>
+</div>

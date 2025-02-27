@@ -40,7 +40,9 @@
         <img role="decoration" src="<%= asset_path('icon-moon.svg') %>" alt="">
       </button>
     </nav>
-    <%= yield %>
+    <main class="flex max-w-[calc(640px-18px)] [width:calc(100%-18px)] flex-col h-full min-h-[200px] [border-inline:1px_solid_#EFEDEB] flex-1">
+      <%= yield %>
+    </main>
     <footer class="flex max-w-[calc(640px-18px)] mt-auto [width:calc(100%-18px)] flex-col h-full [border-inline:1px_solid_#EFEDEB] ">
       <div class="[border-top:1px_solid_#EFEDEB] justify-between flex items-center pt-[16px] pb-[32px] mx-[10px]">
         <span class="text-[#4A4846] text-[16px] leading-[130%] tracking-[-0.2px] flex items-center gap-[6px]">Made with <img height="16" width="16" src="<%= asset_path('header-ruby-logo.png') %>" alt="ruby">
