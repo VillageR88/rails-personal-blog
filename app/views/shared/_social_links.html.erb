@@ -1,0 +1,19 @@
+<div class="flex flex-col gap-[24px]">
+  <% if local_assigns[:show_heading] %>
+    <h2 class="text-[24px] leading-[130%] tracking-[-0.5px] text-[#34302D] font-[600]">Follow me</h2>
+  <% end %>
+  <ul class="flex gap-[12px]">
+    <% [
+      { src: 'logo-x.svg' },
+      { src: 'logo-github.svg' },
+      { src: 'logo-linkedin.svg' },
+      { src: 'logo-frontend-mentor.svg' }
+    ].each do |icon| %>
+      <li>
+        <a href="#" class="hover:bg-[#EFEDEB] [transition:background-color_300ms,border_300ms] hover:border-[#DEDCDA] w-[40px] h-[40px] rounded-[10px] border-[1px] border-[#EFEDEB] bg-[#FEFEFE] flex items-center justify-center cursor-pointer">
+          <img role="decoration" src="<%= asset_path(icon[:src]) %>" alt="" />
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</div>
