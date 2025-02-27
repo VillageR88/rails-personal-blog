@@ -6,7 +6,7 @@
   <div class="flex flex-col  divide-y-[1px] dark:divide-[#34302D] [&>section]:[transition:border-color_300ms] divide-[#EFEDEB] divide-solid">
     <% @articles.each do |article| %>
       <section class="flex flex-col w-full gap-[8px] py-[20px]">
-        <a class="[&>h3]:text-[rgb(52,48,45,1)] [&:hover>h3]:text-[rgb(52,48,45,0.7)] [&:hover>h3]:underline [&:hover>h3]:decoration-[rgb(52,48,45,0.5)]" href="/blog/<%= article['slug'] %>">
+        <a class="[&>h3]:text-[rgb(52,48,45,1)] dark:[&>h3]:text-[#FEFEFE] hover:dark:[&>h3]:text-[rgba(254,254,254,0.8)] [&:hover>h3]:text-[rgb(52,48,45,0.7)] [&:hover>h3]:underline [&:hover>h3]:decoration-[rgb(52,48,45,0.5)] dark:[&:hover>h3]:decoration-[rgba(254,254,254,0.6)]" href="/blog/<%= article['slug'] %>">
           <h3 class="color-unset [transition:300ms] decoration-[rgb(52,48,45,0)]"><%= article['title'] %></h3>
         </a>
         <p class="p-italic [transition:color_300ms]"><%= article['publishedAt'].to_date.strftime('%B %-d, %Y') %></p>

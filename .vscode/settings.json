@@ -10,7 +10,9 @@
         "**/email_templates/**/*.erb"
     ],
     "cSpell.words": [
+        "gsub",
         "importmap",
+        "larr",
         "onclick",
         "Paulina",
         "rgba",

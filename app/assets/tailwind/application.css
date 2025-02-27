@@ -29,7 +29,6 @@ h3:not(.color-unset),
 }
 h3,
 .h3 {
-  @apply dark:text-[#FEFEFE] text-[#34302d];
   font-weight: 600;
   font-size: 20px;
   line-height: 130%;

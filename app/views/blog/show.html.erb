@@ -1,3 +1,4 @@
+<!-- filepath: /c:/Users/Karol/Documents/GitHub/rails-personal-blog/app/views/blog/show.html.erb -->
 <div class="flex flex-col px-[10px]">
   <article class="pt-[48px] pb-[24px] flex flex-col gap-[16px]">
     <header class="flex flex-col gap-[8px]">
@@ -13,7 +14,7 @@
         <% elsif paragraph.start_with?('---') %>
           <hr class="my-[16px] border-t border-[#EFEDEB] dark:border-[#34302D] [transition:border-color_300ms]">
         <% elsif paragraph.start_with?('> ') %>
-          <blockquote class="pl-[16px] border-l-4 border-[#EFEDEB] dark-border-[#34302D] italic [transition:color_300ms,border-color_300ms]">
+          <blockquote class="pl-[16px] border-l-4 border-[#C0BFBF] dark:border-[#34302D] italic [transition:color_300ms,border-color_300ms]">
             <%= paragraph.gsub(/^> /, '') %>
           </blockquote>
         <% elsif paragraph.start_with?('```') && paragraph.end_with?('```') %>
@@ -26,11 +27,15 @@
               <li class="[transition:color_300ms]"><%= item.gsub(/^- /, '') %></li>
             <% end %>
           </ul>
+        <% elsif paragraph.include?('**') && paragraph.count('*') >= 4 %>
+          <p class="p-normal [transition:color_300ms]">
+            <%= paragraph.gsub(/\*\*(.*?)\*\*/) { "<strong>#{$1}</strong>" }.html_safe %>
+          </p>
         <% else %>
-          <p class="p-normal [transition:color_300ms]><%= paragraph %></p>
+          <p class="p-normal [transition:color_300ms]"><%= paragraph %></p>
         <% end %>
       <% end %>
     </div>
-    <a href="/blog" class=" decor-underline-3 my-[24px] w-fit cursor-pointer hover:text-[rgba(52,48,45,0.7)] dark:text-[#FEFEFE] hover:dark:text-[rgba(254,254,254,0.7)] text-[rgba(52,48,45,1)] text-[18px] font-[500] [transition:color_300ms] leading-[150%] tracking-[-0.5px]">&larr; Back to all articles</a>
+    <a href="/blog" class="decor-underline-3 my-[24px] w-fit cursor-pointer hover:text-[rgba(52,48,45,0.7)] dark:text-[#FEFEFE] hover:dark:text-[rgba(254,254,254,0.7)] text-[rgba(52,48,45,1)] text-[18px] font-[500] [transition:color_300ms] leading-[150%] tracking-[-0.5px]">&larr; Back to all articles</a>
   </article>
 </div>
