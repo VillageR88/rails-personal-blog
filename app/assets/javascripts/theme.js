@@ -17,6 +17,7 @@ function initTheme() {
     updateThemeIcon("light", themeIcon);
   }
   document.body.classList.remove("hidden");
+  document.body.classList.add("flex");
 }
 
 // Toggle between light and dark themes

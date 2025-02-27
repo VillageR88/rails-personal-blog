@@ -9,6 +9,10 @@
 :root.dark {
   color-scheme: dark;
 }
+
+::placeholder {
+  transition: color 300ms;
+}
 h1,
 .h1 {
   @apply dark:text-[#FEFEFE] text-[#34302d];
