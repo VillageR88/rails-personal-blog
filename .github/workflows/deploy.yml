@@ -46,20 +46,25 @@ jobs:
       # Generate static site from Rails
       - name: Build static site
         run: |
-          bundle exec rake rails_static_export:export || echo "Using fallback method"
+          bundle exec rake static_export:generate || echo "Using fallback method"
 
-          # If the task failed, use a simpler approach
+          # If the task failed, use a fallback approach
           if [ ! -d "public/static" ] || [ -z "$(ls -A public/static)" ]; then
             echo "Falling back to basic static export"
             mkdir -p public/static
             cp -r public/assets public/static/assets || true
+            
+            # Generate index.html
             bundle exec rails runner 'File.write("public/static/index.html", ApplicationController.render(template: "home/index"))' || echo "Failed to generate index.html"
+            
+            # Generate other pages (add routes as needed)
+            bundle exec rails runner 'routes = ["posts", "about"]; routes.each do |route|; controller, action = route == "posts" ? ["posts", "index"] : [route, "index"]; begin; content = ApplicationController.render(template: "#{controller}/#{action}"); FileUtils.mkdir_p("public/static/#{route}"); File.write("public/static/#{route}/index.html", content); rescue => e; puts "Error: #{e.message}"; end; end' || echo "Failed to generate additional pages"
           fi
 
       # Fix asset paths in HTML files
       - name: Fix asset paths
         run: |
-          find public/static -type f -name "*.html" -exec sed -i 's/\(href\|src\)="\/assets\//\1="assets\//g' {} \;
+          find public/static -type f -name "*.html" -exec sed -i 's/\(href\|src\)="\/assets\//\1="..\/assets\//g; s/\(href\|src\)="\/\([^/]\)/\1="\2/g' {} \;
 
       # Ensure assets are available at the root level
       - name: Copy assets to static directory
