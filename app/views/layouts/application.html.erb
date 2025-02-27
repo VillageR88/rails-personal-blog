@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="">
   <head>
     <title><%= content_for(:title) || "Rails Personal Blog" %></title>
     <meta name="description" content="Frontend Mentor challenge.">
@@ -17,10 +17,17 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%# Remove or comment out the next line %>
     <%#= javascript_importmap_tags %>
+    <%= javascript_include_tag 'theme' %>
+    <script>
+      window.ASSETS = {
+        sunIcon: "<%= asset_path('icon-sun.svg') %>",
+        moonIcon: "<%= asset_path('icon-moon.svg') %>"
+      };
+    </script>
   </head>
-  <body class="bg-[#FBF9F7] min-h-dvh flex flex-col items-center py-[20px] px-[16px] [font-family:DM_Sans,serif]">
+  <body class="bg-[#FBF9F7] [transition:background-color_300ms] dark:bg-[#1C1A19] min-h-dvh flex flex-col items-center py-[20px] px-[16px] [font-family:DM_Sans,serif]">
     <nav
-  class="bg-[#FEFEFE] flex items-center p-[6px] border-[#EFEDEB] border-[1px] mx-auto max-w-[640px] w-full rounded-[10px] min-h-[52px]">
+  class="bg-[#FEFEFE] dark:bg-[#1F1F1F] flex items-center p-[6px] border-[#EFEDEB] dark:border-[#333333] border-[1px] mx-auto max-w-[640px] [transition:background-color_300ms,border-color_300ms,color_300ms] w-full rounded-[10px] min-h-[52px]">
       <img class="rounded-[10px]" height="32" width="32" src="<%= asset_path('image-avatar.jpg') %>" alt="Avatar of person">
       <ul class="flex items-center gap-[24px] ml-auto">
         <nav class="flex items-center h-full gap-[32px]">
@@ -32,20 +39,20 @@
           ].each do |nav_item| %>
             <%= link_to nav_item[:title], 
                 nav_item[:url], 
-                class: "nav-item #{current_page == nav_item[:controller] ? 'active' : ''}" %>
+                class: "nav-item #{current_page == nav_item[:controller] ? 'active' : ''} dark:text-white dark:hover:text-gray-300" %>
           <% end %>
         </nav>
       </ul>
-      <button class="ml-[20px] flex items-center justify-center cursor-pointer rounded-[8px] border-[#EFEDEB] border-[1px] w-[40px] h-[40px] bg-[#FBF9F7]">
-        <img role="decoration" src="<%= asset_path('icon-moon.svg') %>" alt="">
+      <button id="theme-switch" onclick="toggleTheme()" class="ml-[20px] flex items-center justify-center cursor-pointer rounded-[8px] [transition:border-color_300ms,background-color_300ms] border-[#EFEDEB] dark:border-[#34302D] border-[1px] w-[40px] h-[40px] bg-[#FBF9F7] dark:bg-[#1F1F1F]">
+        <img role="decoration" src="<%= asset_path('icon-moon.svg') %>" alt="Switch to dark mode">
       </button>
     </nav>
-    <main class="flex max-w-[calc(640px-18px)] [width:calc(100%-18px)] flex-col h-full min-h-[200px] [border-inline:1px_solid_#EFEDEB] flex-1">
+    <main class="flex max-w-[calc(640px-18px)] [width:calc(100%-18px)] flex-col h-full min-h-[200px] [border-inline:1px_solid_#EFEDEB] dark:[border-inline:1px_solid_#34302D] flex-1 [transition:border-color_300ms]">
       <%= yield %>
     </main>
-    <footer class="flex max-w-[calc(640px-18px)] mt-auto [width:calc(100%-18px)] flex-col h-full [border-inline:1px_solid_#EFEDEB] ">
-      <div class="[border-top:1px_solid_#EFEDEB] justify-between flex items-center pt-[16px] pb-[32px] mx-[10px]">
-        <span class="text-[#4A4846] text-[16px] leading-[130%] tracking-[-0.2px] flex items-center gap-[6px]">Made with <img height="16" width="16" src="<%= asset_path('header-ruby-logo.png') %>" alt="ruby">
+    <footer class="flex max-w-[calc(640px-18px)] mt-auto [width:calc(100%-18px)] flex-col h-full [border-inline:1px_solid_#EFEDEB] dark:[border-inline:1px_solid_#34302D]">
+      <div class="[border-top:1px_solid_#EFEDEB] dark:[border-top:1px_solid_#333333] justify-between flex items-center pt-[16px] pb-[32px] mx-[10px]">
+        <span class="text-[#4A4846] dark:text-[#E5E5E5] text-[16px] leading-[130%] tracking-[-0.2px] flex items-center gap-[6px]">Made with <img height="16" width="16" src="<%= asset_path('header-ruby-logo.png') %>" alt="ruby">
           and <img height="16" width="16" src="<%= asset_path('rails.png') %>" alt="rails">
         </span>
         <ul class="flex gap-[16px]">

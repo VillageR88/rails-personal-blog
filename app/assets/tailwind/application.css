@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* Add this to ignore unknown rule warnings */
 
@@ -8,6 +9,7 @@
 
 h1,
 .h1 {
+  @apply dark:text-[#FEFEFE] text-[#34302d];
   font-weight: 800;
   font-size: 32px;
   line-height: 130%;
@@ -17,10 +19,11 @@ h1,
 
 h3:not(.color-unset),
 .h3 {
-  @apply text-[#34302D];
+  @apply dark:text-[#FEFEFE] text-[#34302d];
 }
 h3,
 .h3 {
+  @apply dark:text-[#FEFEFE] text-[#34302d];
   font-weight: 600;
   font-size: 20px;
   line-height: 130%;
@@ -28,11 +31,11 @@ h3,
 }
 
 .p-normal {
-  @apply text-[18px] text-[#4a4846] leading-[140%] tracking-[-0.2px];
+  @apply text-[18px] text-[#4a4846] dark:text-[#C0BFBF] leading-[140%] tracking-[-0.2px];
 }
 
 .p-italic {
-  color: #4a4846;
+  @apply dark:text-[#C0BFBF] text-[#4a4846];
   font-style: italic;
   font-size: 16px;
   line-height: 130%;
@@ -44,7 +47,7 @@ h3,
   background-position: 50% 95%;
   background-repeat: no-repeat;
   background-size: 0% 3px;
-  transition: background-size 300ms ease-in-out;
+  @apply [transition:background-size_300ms,color_300ms];
 }
 
 .nav-item.active {
@@ -65,7 +68,7 @@ h3,
   background-position: 0% 0.92em;
   background-repeat: no-repeat;
   background-size: 99% 8px;
-  transition: background-size 300ms ease-in-out;
+  @apply [transition:background-size_300ms,color_300ms];
 }
 
 .decor-underline-2 {
@@ -73,6 +76,7 @@ h3,
   background-image: linear-gradient(#93cefc, #93cefc);
   background-repeat: no-repeat;
   background-size: 40px 3px;
+  @apply [transition:background-size_300ms,color_300ms];
 }
 .decor-underline-3 {
   position: relative;
@@ -80,4 +84,5 @@ h3,
   background-position: 0% 1.3em;
   background-repeat: no-repeat;
   background-size: 100% 3px;
+  @apply [transition:background-size_300ms,color_300ms];
 }
