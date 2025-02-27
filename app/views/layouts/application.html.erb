@@ -26,10 +26,10 @@
       <ul class="flex items-center gap-[24px] ml-auto">
         <nav class="flex items-center h-full gap-[32px]">
           <% [
-            { title: 'Home', url: './', controller: 'home' },
-            { title: 'Blog', url: './blog', controller: 'blog' },
-            { title: 'About', url: './about', controller: 'about' },
-            { title: 'Newsletter', url: './newsletter', controller: 'newsletter' }
+            { title: 'Home', url: '.', controller: 'home' },
+            { title: 'Blog', url: '/blog', controller: 'blog' },
+            { title: 'About', url: '/about', controller: 'about' },
+            { title: 'Newsletter', url: '/newsletter', controller: 'newsletter' }
           ].each do |nav_item| %>
             <%= link_to nav_item[:title], 
                 nav_item[:url], 
