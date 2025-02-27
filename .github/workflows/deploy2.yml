@@ -33,6 +33,12 @@ jobs:
       - name: Install dependencies
         run: bundle install
 
+      - name: Setup database
+        run: |
+          if [ -f config/database.yml ]; then
+            bundle exec rails db:create db:schema:load db:seed || true
+          fi
+
       - name: Precompile assets
         run: |
           bundle exec rake assets:precompile
@@ -40,59 +46,23 @@ jobs:
 
       - name: Build static site
         run: |
-          mkdir -p public/static
+          # Generate a temporary secret key base for the static site generation
+          export SECRET_KEY_BASE=$(bundle exec rails secret)
 
-          # Attempt to generate static site
-          if bundle exec rake static_export:generate; then
-            echo "Static export successful"
-          else
-            echo "Falling back to manual static export"
-            
-            # Copy assets
-            cp -r public/assets public/static/assets || true
+          # Set environment variables for static generation
+          export RAILS_ENV=production
+          export GENERATING_STATIC_SITE=true
+          export STATIC_SITE_URL="${{ github.event.repository.name }}"
 
-            # Generate index.html
-            bundle exec rails runner 'File.write("public/static/index.html", ApplicationController.render(template: "home/index"))' || echo "Failed to generate index.html"
-
-            # Generate standard pages
-            bundle exec rails runner '
-              routes = ["posts", "about"]
-              routes.each do |route|
-                controller, action = route == "posts" ? ["posts", "index"] : [route, "index"]
-                begin
-                  content = ApplicationController.render(template: "#{controller}/#{action}")
-                  FileUtils.mkdir_p("public/static/#{route}")
-                  File.write("public/static/#{route}/index.html", content)
-                rescue => e
-                  puts "Error generating #{route}: #{e.message}"
-                end
-              end
-            ' || echo "Failed to generate additional pages"
-
-            # Generate individual blog post pages
-            bundle exec rails runner '
-              Post.find_each do |post|
-                slug = post.slug
-                content = ApplicationController.render(template: "blog/show", locals: { post: post })
-                FileUtils.mkdir_p("public/static/blog/#{slug}")
-                File.write("public/static/blog/#{slug}/index.html", content)
-              end
-            ' || echo "Failed to generate blog posts"
-          fi
-
-      - name: Fix asset paths
-        run: |
-          find public/static -type f -name "*.html" -exec sed -i 's/\(href\|src\)="\/assets\//\1="..\/assets\//g; s/\(href\|src\)="\/\([^/]\)/\1="\2/g' {} \;
-
-      - name: Copy assets to static directory
-        run: cp -r public/assets public/static/ || true
+          # Generate static site
+          bundle exec rake static_export:generate
 
       - name: Debug output
         run: |
           ls -la public/
           ls -la public/static/ || echo "No static directory"
           ls -la public/static/assets/ || echo "No assets in static directory"
-          find public -type f | sort
+          find public/static -type f | grep html | head -n 5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -106,6 +76,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Deploy to GitHub Pages2
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

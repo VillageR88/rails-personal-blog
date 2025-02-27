@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   # Blog routes
   get 'blog', to: 'blog#index'
   get 'blog/:slug', to: 'blog#show', as: 'blog_show'
-
+  get '/about', to: 'about#index'
+  get '/newsletter', to: 'newsletter#index'
   # Defines the root path route ("/")
   root "home#index"
   
-  get '/about', to: 'about#index'
-  get '/newsletter', to: 'newsletter#index'
+
 end

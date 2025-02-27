@@ -24,9 +24,9 @@
   class="bg-[#FEFEFE] dark:bg-[#1F1F1F] flex items-center p-[6px] border-[#EFEDEB] dark:border-[#333333] border-[1px] mx-auto max-w-[640px] [transition:background-color_300ms,border-color_300ms] w-full rounded-[10px] min-h-[52px]">
       <img class="rounded-[10px]" height="32" width="32" src="<%= asset_path('image-avatar.jpg') %>" alt="Avatar of person">
       <ul class="flex items-center gap-[24px] ml-auto">
-        <nav class="flex items-center h-full gap-[32px]">
+        <li class="flex items-center h-full gap-[32px]">
           <% [
-            { title: 'Home', url: '.', controller: 'home' },
+            { title: 'Home', url: '/', controller: 'home' },
             { title: 'Blog', url: '/blog', controller: 'blog' },
             { title: 'About', url: '/about', controller: 'about' },
             { title: 'Newsletter', url: '/newsletter', controller: 'newsletter' }
@@ -35,7 +35,7 @@
                 nav_item[:url], 
                 class: "nav-item #{current_page == nav_item[:controller] ? 'active' : ''} dark:text-white dark:hover:text-gray-300" %>
           <% end %>
-        </nav>
+        </li>
       </ul>
       <button id="theme-switch" onclick="toggleTheme()" class="ml-[20px] flex items-center justify-center cursor-pointer rounded-[8px] [transition:border-color_300ms,background-color_300ms] border-[#EFEDEB] dark:border-[#34302D] border-[1px] w-[40px] h-[40px] bg-[#FBF9F7] dark:bg-[#1F1F1F]">
         <img role="decoration" src="<%= asset_path('icon-moon.svg') %>" alt="Switch to dark mode">

@@ -87,4 +87,27 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # Special handling for static site generation
+  if ENV["GENERATING_STATIC_SITE"]
+    # Disable features not needed for static generation
+    config.cache_classes = false
+    config.eager_load = false
+    config.consider_all_requests_local = true
+    config.action_controller.perform_caching = false
+    config.action_mailer.perform_caching = false
+    config.active_support.deprecation = :log
+    config.active_record.migration_error = false
+    
+    # Make sure asset paths work correctly for static site
+    config.assets.prefix = "assets"
+    
+    # Display all deprecation warnings during static generation
+    config.active_support.report_deprecations = true
+    
+    # Set a dummy secret key base if none is provided
+    if ENV["SECRET_KEY_BASE"].blank? && !config.secret_key_base
+      config.secret_key_base = "tempkeyforgeneratingstaticsiteonlythisisnotusedforencryption"
+    end
+  end
 end

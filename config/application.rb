@@ -16,6 +16,12 @@ module MyProject
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    # Add fallback secret key base for static site generation
+    # This is only used when GENERATING_STATIC_SITE=true and no SECRET_KEY_BASE is set
+    if ENV["GENERATING_STATIC_SITE"] && ENV["SECRET_KEY_BASE"].blank?
+      config.secret_key_base = "tempkeyforgeneratingstaticsiteonlythisisnotusedforencryption"
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
