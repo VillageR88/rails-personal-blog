@@ -123,6 +123,16 @@ namespace :static_export do
       puts "Copying assets..."
       FileUtils.mkdir_p(assets_dest)
       FileUtils.cp_r(Dir.glob("#{assets_source}/*"), assets_dest)
+      
+      # Process CSS files to fix background image URLs
+      Dir.glob("#{assets_dest}/**/*.css").each do |css_file|
+        content = File.read(css_file)
+        content.gsub!(/url\(['"]?([^'")]+)['"]?\)/) do |match|
+          url = $1
+          "url('/rails-personal-blog#{url}')"
+        end
+        File.write(css_file, content)
+      end
     end
     
     # Copy images if they exist
