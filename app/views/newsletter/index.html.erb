@@ -9,20 +9,33 @@
         I'd love to have you along for the ride and also hear about your own journey!
       </p>
     </div>
-    <form class="flex flex-col gap-[16px] w-full">
+    <form  class="flex flex-col gap-[16px] w-full">
       <div class="flex flex-col gap-[8px] w-full">
         <label for="email" class="text-[#34302D] [transition:color_300ms] dark:text-[#FEFEFE] tracking-[-0.2px] leading-[140%] text-[18px]">Email Address</label>
         <input 
           type="email" 
           id="email"
+          name="email"
           autocomplete="email"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
           placeholder="email@example.com"
-          class="outline-none w-full dark:bg-[#201E1D] dark:hover:not-focus:bg-[#34302D]  hover:not-focus:bg-[#EFEDEB] [transition:background-color_300ms,border-color_300ms] rounded-[10px] min-h-[51px] [border:1px_solid_#DEDCDA] px-[16px] dark:border-[#4A4846] bg-[#FEFEFE]"
+          class="w-full dark:bg-[#201E1D] dark:hover:not-focus:bg-[#34302D] hover:not-focus:bg-[#EFEDEB] [transition:background-color_300ms,border-color_300ms,color_300ms] rounded-[10px] min-h-[51px] [border:1px_solid_#DEDCDA] px-[16px] dark:border-[#4A4846] bg-[#FEFEFE]"
           required
         >
+        <div id="error-message" class="hidden items-center gap-[8px]">
+          <img height="16" width="16" src="<%= asset_path('icon-error.svg') %>" alt="error">
+          <p class="text-[#F04438]">Please enter a valid email address.</p>
+        </div>
+        <div id="success-message" class="hidden items-center gap-[8px]">
+          <svg class="flex size-[16px] dark:fill-[#9DD3A9] fill-[#008531] [transition:fill_300ms]" xmlns="http://www.w3.org/2000/svg" width="14" height="15" fill="none" viewBox="0 0 14 15">
+            <path fill="inherit"
+        d="M7 .469c3.719 0 6.781 3.062 6.781 6.781 0 3.746-3.062 6.781-6.781 6.781A6.78 6.78 0 0 1 .219 7.25C.219 3.531 3.254.469 7 .469ZM7 1.78A5.467 5.467 0 0 0 1.531 7.25 5.45 5.45 0 0 0 7 12.719a5.467 5.467 0 0 0 5.469-5.469c0-3.008-2.461-5.469-5.469-5.469Zm3.828 3.582c.11.11.11.328 0 .465l-4.73 4.676a.315.315 0 0 1-.465 0L3.145 7.988c-.11-.11-.11-.328 0-.465l.628-.601a.315.315 0 0 1 .465 0l1.64 1.64 3.856-3.828c.137-.136.356-.136.465 0l.63.63Z" />
+          </svg>
+          <p class="dark:text-[#9DD3A9] text-[#008531] [transition:color_300ms]">You’re subscribed! Check your inbox for updates.</p>
+        </div>
       </div>
       <button 
+        id="submit-button"
         type="submit"
         class="bg-[#93CEFC] text-[#1C1A19] max-w-[158px] px-4 py-2 rounded-[10px] hover:bg-[#75B0DE] font-medium text-[18px] [transition:color_300ms,background-color_300ms] tracking-[-0.5px] cursor-pointer"
       >
@@ -34,3 +47,6 @@
     </form>
   </section>
 </div>
+<% content_for :scripts do %>
+  <%= javascript_include_tag 'email.js' %>
+<% end %>
