@@ -12,7 +12,7 @@
         articles.each_with_index do |article, index| 
       %>
       <section class="flex flex-col w-fit gap-[8px] article-item <%= index >= 5 ? 'hidden' : '' %>">
-        <a class="[&>h3]:text-[rgb(52,48,45,1)] dark:[&>h3]:text-[#FEFEFE] [&:hover>h3]:text-[rgb(52,48,45,0.7)] dark:[&:hover>h3]:text-[rgba(254,254,254,0.8)] dark:[&:hover>h3]:decoration-[rgba(254,254,254,0.6)] [&:hover>h3]:underline [&:hover>h3]:decoration-[rgb(52,48,45,0.5)]" href="/blog/<%= article['slug'] %>">
+        <a class="[&>h3]:text-[rgb(52,48,45,1)] dark:[&>h3]:text-[#FEFEFE] [&:hover>h3]:text-[rgb(52,48,45,0.7)] dark:[&:hover>h3]:text-[rgba(254,254,254,0.8)] dark:[&:hover>h3]:decoration-[rgba(254,254,254,0.6)] [&:hover>h3]:underline rounded-[8px] [&:hover>h3]:decoration-[rgb(52,48,45,0.5)]" href="/blog/<%= article['slug'] %>">
           <h3 class="color-unset [transition:color_300ms,text-decoration_300ms] decoration-[rgb(52,48,45,0)]"><%= article['title'] %></h3>
         </a>
         <p class="p-italic [transition:color_300ms]"><%= article['publishedAt'].to_date.strftime('%B %-d, %Y') %></p>
@@ -22,7 +22,7 @@
       <button 
           id="view-all-button"
           onclick="toggleArticles()"
-          class="decor-underline-3 w-fit cursor-pointer hover:text-[rgba(52,48,45,0.7)] text-[rgba(52,48,45,1)] text-[18px] font-[500] [transition:color_300ms] hover:dark:text-[#FEFEFE] dark:text-[#FEFEFE] leading-[150%] tracking-[-0.5px]">
+          class="decor-underline-3 rounded-[8px] w-fit cursor-pointer hover:text-[rgba(52,48,45,0.7)] text-[rgba(52,48,45,1)] text-[18px] font-[500] [transition:color_300ms] hover:dark:text-[#FEFEFE] dark:text-[#FEFEFE] leading-[150%] tracking-[-0.5px]">
         View all articles
       </button>
     <% end %>
